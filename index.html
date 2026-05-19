@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roundtable AI rollout timeline</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#111a33; --panel2:#172446; --ink:#f7f9ff; --muted:#aeb9d4;
+      --line:#40517d; --health:#6ee7b7; --food:#fbbf24; --tech:#60a5fa; --sport:#fb7185; --finance:#c084fc;
+      --gate:#fde68a; --danger:#fca5a5; --good:#86efac; --cyan:#67e8f9; --white:#fff;
+      --shadow: 0 22px 80px rgba(0,0,0,.38); --radius: 24px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(circle at top left,#1f2a5a 0,#0b1020 38%,#050713 100%);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+    a{color:inherit}.wrap{max-width:1240px;margin:0 auto;padding:32px 20px 64px}
+    .hero{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:32px;padding:42px;background:linear-gradient(135deg,rgba(32,44,92,.92),rgba(9,14,31,.92));box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;right:-160px;top:-130px;width:420px;height:420px;background:radial-gradient(circle,rgba(103,232,249,.24),transparent 65%);pointer-events:none}
+    .eyebrow{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;color:var(--cyan);font-weight:700;font-size:13px;background:rgba(255,255,255,.06)}
+    h1{font-size:clamp(38px,6vw,78px);line-height:.95;margin:22px 0 18px;letter-spacing:-.06em;max-width:900px}
+    .sub{font-size:clamp(18px,2.3vw,25px);color:#dce5ff;max-width:860px;margin:0 0 26px}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:28px}.claim{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}.claim h3{margin:0 0 10px;font-size:17px;color:var(--gate)}.claim p{margin:0;color:#e8edff}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.chip{padding:8px 12px;border-radius:999px;background:#111a33;border:1px solid rgba(255,255,255,.13);font-size:13px;color:#dbe6ff}.health{border-color:rgba(110,231,183,.45);color:#baf7df}.food{border-color:rgba(251,191,36,.45);color:#ffe5a3}.tech{border-color:rgba(96,165,250,.45);color:#c8ddff}.sport{border-color:rgba(251,113,133,.45);color:#ffd0d8}.finance{border-color:rgba(192,132,252,.45);color:#ead5ff}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:52px 0 18px}.section-title h2{font-size:clamp(28px,4vw,46px);line-height:1;margin:0;letter-spacing:-.04em}.section-title p{max-width:520px;color:var(--muted);margin:0}.panel{background:rgba(17,26,51,.82);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .timeline{position:relative;padding:24px}.timeline:before{content:"";position:absolute;left:38px;top:40px;bottom:40px;width:4px;background:linear-gradient(var(--health),var(--gate),var(--cyan));border-radius:99px}.step{position:relative;display:grid;grid-template-columns:54px 1fr;gap:18px;padding:18px 0}.dot{width:34px;height:34px;border-radius:50%;background:var(--panel2);border:4px solid var(--health);z-index:1;box-shadow:0 0 0 8px rgba(110,231,183,.08);margin-left:0}.step-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}.step-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:10px}.step h3{margin:0;font-size:24px;letter-spacing:-.025em}.badge{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 11px;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.04em}.badge.health{background:rgba(110,231,183,.12)}.badge.gate{background:rgba(253,230,138,.14);color:#fff0aa;border:1px solid rgba(253,230,138,.35)}.badge.test{background:rgba(103,232,249,.12);color:#b8f7ff;border:1px solid rgba(103,232,249,.3)}.desc{color:#dbe4ff;margin:0 0 14px}.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini div{background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px}.mini b{display:block;color:#fff;font-size:13px;margin-bottom:4px}.mini span{color:var(--muted);font-size:13px}.gate-card{border-color:rgba(253,230,138,.45);background:linear-gradient(135deg,rgba(91,75,25,.42),rgba(255,255,255,.04))}.gate-card h3:before{content:"★ ";color:var(--gate)}
+    .topic-row{display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:12px;margin-top:12px}.topic{border-radius:18px;padding:16px;min-height:120px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)}.topic h4{margin:0 0 6px}.topic p{margin:0;color:#d5def7;font-size:13px}.topic.main{background:linear-gradient(135deg,rgba(110,231,183,.18),rgba(255,255,255,.05));border-color:rgba(110,231,183,.42)}
+    .funnel-wrap{display:grid;grid-template-columns:1fr .85fr;gap:20px}.funnel{padding:26px}.funnel-stage{position:relative;margin:0 auto 12px;min-height:66px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:#08111f;text-shadow:0 1px rgba(255,255,255,.22);clip-path:polygon(var(--left) 0,calc(100% - var(--left)) 0,100% 100%,0 100%);background:linear-gradient(90deg,var(--c1),var(--c2));box-shadow:0 14px 35px rgba(0,0,0,.22)}.funnel-stage small{display:block;font-weight:700;color:rgba(8,17,31,.75);margin-top:4px}.f1{--left:0%;--c1:#67e8f9;--c2:#60a5fa;width:100%}.f2{--left:5%;--c1:#86efac;--c2:#6ee7b7;width:88%}.f3{--left:7%;--c1:#fde68a;--c2:#fbbf24;width:76%}.f4{--left:10%;--c1:#fca5a5;--c2:#fb7185;width:62%}.f5{--left:13%;--c1:#ddd6fe;--c2:#c084fc;width:50%}.metrics{padding:26px}.metric{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.09)}.metric:last-child{border-bottom:0}.metric b{color:#fff}.metric span{color:var(--muted)}
+    .decision{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.decision .box{padding:18px;border-radius:20px;border:1px solid rgba(253,230,138,.35);background:rgba(253,230,138,.09)}.decision h3{margin:0 0 8px;color:#fff0aa}.decision p{margin:0;color:#e5dcbd;font-size:14px}
+    .footer{margin-top:42px;color:#9ca8c8;text-align:center;font-size:13px}
+    @media (max-width:900px){.hero{padding:28px}.hero-grid,.funnel-wrap,.decision,.topic-row{grid-template-columns:1fr}.mini{grid-template-columns:1fr}.timeline:before{left:30px}.step{grid-template-columns:42px 1fr}.step-head{align-items:flex-start;flex-direction:column}h1{font-size:44px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Roundtable AI rollout map · plain-English view</div>
+      <h1>Don’t ask one AI. Ask the whole roundtable.</h1>
+      <p class="sub">A linear rollout for testing whether Roundtable can become a product people understand, share, and return to — with clear gates before bigger launch moves.</p>
+      <div class="hero-grid">
+        <div class="claim">
+          <h3>Core product idea</h3>
+          <p>People do not just need one fast answer. They need a multi-level response: several expert agents with specific perspectives debating the same question, then giving a useful next step.</p>
+        </div>
+        <div class="claim">
+          <h3>Strongest first topic</h3>
+          <p><b>Health</b>, because TVBS / 健康2.0 is a real partner channel and health questions naturally need multiple expert perspectives.</p>
+          <div class="chips"><span class="chip health">Health first</span><span class="chip food">Food</span><span class="chip tech">Tech</span><span class="chip sport">Sport</span><span class="chip finance">Finance</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title"><h2>Rollout timeline</h2><p>Dates are less important than sequence. Each step earns the right to move to the next one.</p></div>
+    <section class="panel timeline">
+      <article class="step"><div class="dot"></div><div class="step-card"><div class="step-head"><h3>1. Build the Health proof</h3><span class="badge health">Health first</span></div><p class="desc">Use TVBS / 健康2.0 as the first real partner channel. Show a health question becoming a multi-agent expert debate: family care, nutrition, sleep, rehab, and medical caution.</p><div class="mini"><div><b>Main thing to prove</b><span>People understand Roundtable fast.</span></div><div><b>Product moment</b><span>One question becomes a lively expert debate.</span></div><div><b>Must measure</b><span>First useful Roundtable completed.</span></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card gate-card"><div class="step-head"><h3>Gate 1: Is the first experience working?</h3><span class="badge gate">Go / slow down</span></div><p class="desc">Before wider launch, check if the basic loop is real: users complete a useful Roundtable, share tracking is ready, and people can explain the product after seeing it.</p><div class="mini"><div><b>Pass if</b><span>Users finish a first useful Roundtable.</span></div><div><b>Pass if</b><span>Sharing clicks and shared-link opens are recorded.</span></div><div><b>If weak</b><span>Fix the product or explanation before sending more traffic.</span></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card"><div class="step-head"><h3>2. Open beta, not full launch</h3><span class="badge test">Learn in public</span></div><p class="desc">Let more people try it, but do not pretend the product is fully proven. The public story stays simple: Generative Debate around health, with secondary examples in food, tech, sport, and finance.</p><div class="topic-row"><div class="topic main"><h4>Health</h4><p>Main story. Partner proof through TVBS / 健康2.0.</p></div><div class="topic"><h4>Food</h4><p>Cuisine taste debates, restaurant choice, nutrition angles.</p></div><div class="topic"><h4>Tech</h4><p>Tool comparisons, build decisions, operator debates.</p></div><div class="topic"><h4>Sport</h4><p>Tennis expert, coach, injury doctor, stats analyst.</p></div><div class="topic"><h4>Finance</h4><p>Saving, spending, risk education. Not financial advice.</p></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card"><div class="step-head"><h3>3. Watch the social loop</h3><span class="badge test">Sharing matters</span></div><p class="desc">Roundtable should not only be used; it should be shared. A shared link should open the same topic and expert setup so the next person can start their own session.</p><div class="mini"><div><b>Share rate</b><span>Do users send links or recaps?</span></div><div><b>Shared link conversion</b><span>Do receivers start a session?</span></div><div><b>Time in session</b><span>Do users stay with the debate?</span></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card gate-card"><div class="step-head"><h3>Gate 2: Is this product pulling people back?</h3><span class="badge gate">Full launch decision</span></div><p class="desc">Only move to a bigger launch if users share it, receivers open links, people return, and the Health experience feels real — not just a cool demo.</p><div class="mini"><div><b>Pass if</b><span>Repeat use is real.</span></div><div><b>Pass if</b><span>Sharing creates new sessions.</span></div><div><b>If mixed</b><span>Stay in beta and fix the weak part.</span></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card"><div class="step-head"><h3>4. Choose the second topic from data</h3><span class="badge test">Not opinion</span></div><p class="desc">Food, tech, sport, and finance all get small tests. The next topic should be whichever one wins on sharing, time in session, and repeat use.</p><div class="mini"><div><b>Food wins if</b><span>People share taste debates.</span></div><div><b>Sport wins if</b><span>Fans stay for expert debate.</span></div><div><b>Finance wins if</b><span>People return for cautious education.</span></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card gate-card"><div class="step-head"><h3>Gate 3: Can this become a paid partner test?</h3><span class="badge gate">Partner test</span></div><p class="desc">A paid partner test means a short 30- or 60-day test with a partner, like TVBS using Roundtable inside Health 2.0 with real users. Both sides agree what success means before it starts.</p><div class="mini"><div><b>Pass if</b><span>A partner sees real user value.</span></div><div><b>Pass if</b><span>The team can support the test.</span></div><div><b>If not</b><span>Return to product and sharing loop.</span></div></div></div></article>
+      <article class="step"><div class="dot"></div><div class="step-card gate-card"><div class="step-head"><h3>Gate 4: Is it ready to scale?</h3><span class="badge gate">Scale or hold</span></div><p class="desc">Only expand when the product has repeat use, a working share loop, and partner proof. If the core loop is weak, adding more topics or markets only hides the problem.</p><div class="mini"><div><b>Scale if</b><span>Users come back and share.</span></div><div><b>Scale if</b><span>Partner tests can become real rollouts.</span></div><div><b>Hold if</b><span>People try once but do not return.</span></div></div></div></article>
+    </section>
+
+    <div class="section-title"><h2>Funnel graph</h2><p>The product “hits” only if people move through the whole loop: understand, use, share, bring someone else in, and come back.</p></div>
+    <section class="funnel-wrap">
+      <div class="panel funnel">
+        <div class="funnel-stage f1">People see the hook<small>“Don’t ask one AI. Ask the whole roundtable.”</small></div>
+        <div class="funnel-stage f2">They start a Roundtable<small>choose topic + expert setup</small></div>
+        <div class="funnel-stage f3">They reach a useful result<small>expert debate + recap / next step</small></div>
+        <div class="funnel-stage f4">They share it<small>same topic + expert setup link</small></div>
+        <div class="funnel-stage f5">Someone opens + starts<small>new session from shared link</small></div>
+      </div>
+      <div class="panel metrics">
+        <div class="metric"><b>Hook clarity</b><span>Can someone explain Roundtable after a few seconds?</span></div>
+        <div class="metric"><b>First useful Roundtable</b><span>Did the user complete one real session?</span></div>
+        <div class="metric"><b>Time in session</b><span>How long they stay in the debate, not counting loading.</span></div>
+        <div class="metric"><b>Share rate</b><span>Do users send the Roundtable link or recap?</span></div>
+        <div class="metric"><b>Shared link conversion</b><span>Does the receiver start their own session?</span></div>
+        <div class="metric"><b>Repeat use</b><span>Do users come back without being pushed?</span></div>
+      </div>
+    </section>
+
+
+
+    <div class="section-title"><h2>Assets we need to make</h2><p>These are the actual things the team needs before launch. Dates are simple checkpoints, not sacred.</p></div>
+    <section class="panel metrics">
+      <div class="metric"><b>Now → before open beta</b><span><b>30-second trailer / tutorial.</b> Show one question turning into a panel of AI experts, then a useful recap. It must explain Roundtable immediately.</span></div>
+      <div class="metric"><b>Now → before open beta</b><span><b>Questions-and-answers page.</b> Explain what Roundtable is, who it is for, whether it is medical advice, and how sharing works.</span></div>
+      <div class="metric"><b>Now → before open beta</b><span><b>One-page partner explanation.</b> For TVBS / 健康2.0: what Roundtable is, how it appears inside their app, why Health is first, and what the test is trying to prove.</span></div>
+      <div class="metric"><b>Now → before open beta</b><span><b>Terms of service + health disclaimer.</b> Make clear this is informational and not a replacement for a doctor.</span></div>
+      <div class="metric"><b>Before Gate 1</b><span><b>Basic tracking.</b> Record first useful Roundtable completed, share clicks, shared-link opens, and new sessions started from shared links.</span></div>
+      <div class="metric"><b>During open beta</b><span><b>Four secondary topic demos.</b> Food, tech, sport, and finance examples using the same Roundtable format.</span></div>
+      <div class="metric"><b>Before Gate 2</b><span><b>Shareable recap/link design.</b> The shared link should open the same topic and expert setup for the next person.</span></div>
+      <div class="metric"><b>Before paid partner test</b><span><b>Partner test brief.</b> A short document saying what TVBS-style partners are testing, what success means, and what happens after 30 or 60 days.</span></div>
+    </section>
+
+    <div class="section-title"><h2>Gate logic</h2><p>At each gate, mixed signal means slow down and fix. Do not force a full launch because the calendar says so.</p></div>
+    <section class="decision">
+      <div class="box"><h3>Gate 1</h3><p>Can people finish their first useful Roundtable and understand what it is?</p></div>
+      <div class="box"><h3>Gate 2</h3><p>Do they share, do receivers start sessions, and do users come back?</p></div>
+      <div class="box"><h3>Gate 3</h3><p>Can a partner run a paid test with real users and clear success rules?</p></div>
+      <div class="box"><h3>Gate 4</h3><p>Is the loop strong enough to expand topics, partners, or markets?</p></div>
+    </section>
+    <div class="footer">Generated from the Roundtable AI go-to-market plan · plain-English visual draft</div>
+  </div>
+</body>
+</html>
