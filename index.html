@@ -1,35 +1,793 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roundtable AI rollout timeline</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roundtable AI — Rollout Timeline</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
   <style>
-    :root{--paper:#f7f3eb;--ink:#14141a;--muted:#5b5750;--faint:#817b71;--line:#e4dfd3;--accent:#d1452b;--health:#4a8a82;--food:#b89149;--tech:#5b6776;--sport:#9f6147;--finance:#5e775a;--sans:'Inter',system-ui,-apple-system,sans-serif;--serif:'Newsreader',Georgia,serif}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-variant-numeric:tabular-nums;line-height:1.58}main{max-width:1080px;margin:0 auto;padding:56px 48px 88px}.brand,.kicker,.phase-label,.eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}h1,h2,h3,h4{font-family:var(--serif);letter-spacing:-.045em}h1{font-size:clamp(58px,8vw,104px);line-height:.86;margin:22px 0 24px;max-width:920px}h2{font-size:clamp(36px,4vw,56px);line-height:1;margin:0 0 18px}h3{font-size:28px;line-height:1.05;margin:0 0 8px}.dek{font-family:var(--serif);font-size:clamp(24px,3vw,36px);line-height:1.12;max-width:830px;color:#262221;margin:0}.muted{color:var(--muted)}section{margin-block:92px;border-top:1px solid var(--line);padding-top:26px}.hero{border-top:0;margin-top:0;padding-top:0;display:grid;grid-template-columns:1fr 270px;gap:48px;align-items:end}
-    .glyph{aspect-ratio:1;border:1px solid var(--line);border-radius:50%;position:relative;background:rgba(255,255,255,.24)}.glyph:before{content:"";position:absolute;inset:31%;border:1px solid var(--accent);border-radius:50%}.seat{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--ink)}.s1{top:18%;left:47%}.s2{top:36%;right:16%;background:var(--health)}.s3{bottom:21%;right:25%;background:var(--food)}.s4{bottom:21%;left:25%;background:var(--sport)}.s5{top:36%;left:16%;background:var(--finance)}.topic-list{margin-top:18px;display:grid;gap:7px;font-size:13px;color:var(--muted)}.topic-list span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--dot,var(--accent))}
-    .idea{display:grid;grid-template-columns:300px 1fr;gap:48px}.pull{font-family:var(--serif);font-size:38px;line-height:1.02;color:var(--ink);letter-spacing:-.04em}.body-copy{font-size:18px;max-width:690px}.body-copy p{margin:0 0 16px}.topic-slate{display:grid;grid-template-columns:1.2fr 1fr;gap:34px}.health-card{border-left:4px solid var(--health);padding-left:22px}.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.topic{border-top:1px solid var(--line);padding-top:14px}.topic b{display:block;font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}.topic p{margin:0;color:var(--muted);font-size:14px}
-    .timeline{display:grid;grid-template-columns:150px 1fr;column-gap:32px}.row{display:contents}.date{white-space:pre-line;border-top:1px solid var(--line);padding:24px 0;color:var(--faint);font-size:13px;font-weight:800;text-align:right;text-transform:uppercase;letter-spacing:.08em}.event{border-top:1px solid var(--line);padding:22px 0 24px}.event p{margin:0 0 8px;color:var(--muted);font-size:16px}.event b{color:var(--ink);font-weight:750}.gate-row{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center;padding:58px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:24px 0}.gate-row .n{font-family:var(--serif);font-size:156px;line-height:.82;color:var(--ink);letter-spacing:-.06em;font-weight:500}.gate-row .lbl{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 10px}.gate-row h3{font-size:clamp(30px,3vw,42px);line-height:1.03;margin:0 0 10px}.gate-row p{margin:0 0 8px;color:var(--muted);font-size:16px;max-width:650px}.gate-row b{color:var(--ink);font-weight:750}
-    .funnel-list{margin-top:28px}.funnel-row{display:grid;grid-template-columns:64px 1fr 250px;gap:24px;align-items:baseline;border-top:1px solid var(--line);padding:22px 0}.funnel-row:nth-child(2){margin-left:32px}.funnel-row:nth-child(3){margin-left:64px}.funnel-row:nth-child(4){margin-left:96px}.funnel-row:nth-child(5){margin-left:128px}.funnel-row .num{font-family:var(--serif);font-size:56px;color:var(--faint);line-height:.9;letter-spacing:-.04em}.funnel-row h4{font-size:25px;margin:0 0 3px}.funnel-row p,.funnel-row span{margin:0;color:var(--muted);font-size:14px}.measure b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin-bottom:3px}
-    .deliv-group{margin-top:34px}.deliv-group h4{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px;padding-top:14px;border-top:1px solid var(--line)}.deliv-item{padding:8px 0}.deliv-item b{font-family:var(--serif);font-weight:650;font-size:19px;display:block;margin-bottom:2px}.deliv-item span{color:var(--muted);font-size:14px}.footer{margin-top:80px;border-top:1px solid var(--line);padding-top:20px;color:var(--faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
-    @media(max-width:850px){main{padding:34px 22px 56px}.hero,.idea,.topic-slate,.gate-row{grid-template-columns:1fr}.glyph{max-width:220px}.timeline{grid-template-columns:1fr}.date{text-align:left;padding-bottom:0}.event{padding-top:10px}.gate-row .n{font-size:112px}.funnel-row,.funnel-row:nth-child(n){grid-template-columns:1fr;margin-left:0}.measure{margin-top:6px}}
-  .loop{margin-top:28px}.loop-row{display:grid;grid-template-columns:96px 1fr 280px;gap:32px;align-items:baseline;border-top:1px solid var(--line);padding:22px 0}.loop-row:nth-child(2){margin-left:28px}.loop-row:nth-child(3){margin-left:56px}.loop-row:nth-child(4){margin-left:84px}.loop-row:nth-child(5){margin-left:112px}.loop-row:nth-child(6){margin-left:140px;border-bottom:1px solid var(--line)}.loop-row .ln{font-family:var(--serif);font-size:68px;line-height:.88;letter-spacing:-.04em;color:var(--faint);font-weight:500}.loop-row h4{font-size:25px;margin:0 0 4px}.loop-row .lc p{margin:0;color:var(--muted);font-size:15px;max-width:48ch}.loop-row .lc p.repeat{margin-top:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}.loop-row .lm b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:4px}.loop-row .lm span{color:var(--muted);font-size:14px;line-height:1.45}.event .assets,.gate-row .assets{margin-top:14px;padding-top:10px;border-top:1px dotted var(--line);color:var(--muted);font-size:14px}.event .assets span,.gate-row .assets span{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-right:10px}@media(max-width:850px){.loop-row,.loop-row:nth-child(n){grid-template-columns:1fr;margin-left:0}.loop-row .ln{font-size:48px}}</style>
+    /* ── Tokens ── */
+    :root {
+      --bg:        #f5f5f3;
+      --surface:   #ffffff;
+      --surface-2: #f9f9f8;
+      --border:    #e5e5e3;
+      --border-2:  rgba(0,0,0,.08);
+      --ink:       #1c1c1e;
+      --muted:     #636366;
+      --faint:     #aeaeb2;
+      --accent:    #d97043;
+
+      /* Phase palette */
+      --pre-bg:      #f1f2f4; --pre-text:    #374151; --pre-dot:    #6b7280;
+      --wl-bg:       #e8f5f3; --wl-text:     #0f5f58; --wl-dot:     #0d9488;
+      --launch-bg:   #fef2f2; --launch-text: #991b1b; --launch-dot: #dc2626;
+      --post-bg:     #fef9ec; --post-text:   #7c3d00; --post-dot:   #c2790a;
+      --ret-bg:      #f0fdf4; --ret-text:    #14532d; --ret-dot:    #16a34a;
+
+      --sans:  'Inter', system-ui, sans-serif;
+      --serif: 'Newsreader', Georgia, serif;
+      --r:     10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 32px 96px; }
+
+    /* ── Type ── */
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.02; letter-spacing: -.04em; font-weight: 650;
+      margin: 0 0 12px; color: var(--ink);
+    }
+    h2 { font-size: 18px; font-weight: 700; letter-spacing: -.02em; margin: 0 0 4px; }
+    h3 { font-size: 15px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 10px; }
+    p  { margin: 0 0 8px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    p:last-child { margin-bottom: 0; }
+
+    .eyebrow {
+      display: block;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--faint); margin-bottom: 6px;
+    }
+
+    section { margin-bottom: 60px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px 24px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+
+    /* ════════════════ HERO ════════════════ */
+    .hero {
+      padding: 40px 0 44px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 52px;
+      display: grid;
+      grid-template-columns: 1fr 188px;
+      gap: 40px;
+      align-items: center;
+    }
+    .brand-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: 4px 12px;
+      font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 14px;
+    }
+    .brand-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .hero-dek { font-size: 15px; color: var(--muted); margin-top: 10px; max-width: 520px; }
+
+    /* Glyph */
+    .glyph {
+      aspect-ratio: 1; border: 1px solid var(--border);
+      border-radius: 50%; position: relative; background: var(--surface);
+    }
+    .glyph::before {
+      content: ""; position: absolute; inset: 28%;
+      border: 1.5px solid var(--accent); border-radius: 50%; opacity: .4;
+    }
+    .seat {
+      position: absolute; width: 11px; height: 11px;
+      border-radius: 50%; background: var(--ink);
+      border: 2px solid var(--surface);
+    }
+    .s1 { top: 17%; left: 46%; }
+    .s2 { top: 34%; right: 13%; background: #0d9488; }
+    .s3 { bottom: 20%; right: 23%; background: #c2790a; }
+    .s4 { bottom: 20%; left: 23%; background: #9f6147; }
+    .s5 { top: 34%; left: 13%; background: #5e775a; }
+
+    .topic-tags { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
+    .topic-tag  { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+    .topic-tag .td { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ════════════════ IDEA ════════════════ */
+    .idea-grid {
+      display: grid; grid-template-columns: 220px 1fr;
+      gap: 36px; align-items: start;
+    }
+    .pull {
+      font-family: var(--serif); font-size: 26px; line-height: 1.14;
+      font-weight: 500; letter-spacing: -.03em; color: var(--ink);
+    }
+    .body-copy p { font-size: 15px; margin-bottom: 12px; color: var(--muted); }
+
+    /* ════════════════ TOPIC SLATE ════════════════ */
+    .topic-slate { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .health-card {
+      background: #e8f5f3; border: 1px solid #b2dbd6;
+      border-radius: var(--r); padding: 20px 22px;
+    }
+    .health-card h3 { color: #0f5f58; font-size: 16px; margin-bottom: 6px; }
+    .health-card p { color: #2d7a72; }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .topic-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 16px;
+    }
+    .topic-card .tc-name {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 4px;
+    }
+    .topic-card p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* ════════════════ TIMELINE ════════════════ */
+    .tl-track {
+      position: relative;
+      padding-left: 32px;
+      margin-top: 28px;
+    }
+    .tl-track::before {
+      content: ""; position: absolute;
+      left: 7px; top: 14px; bottom: 28px;
+      width: 2px; background: var(--border);
+    }
+
+    .tl-group { margin-bottom: 24px; }
+
+    .tl-phase-hd {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px; position: relative;
+    }
+    .tl-node {
+      position: absolute; left: -26px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--surface);
+      border: 2.5px solid var(--nc, var(--faint));
+      top: 50%; transform: translateY(-50%); z-index: 1;
+    }
+    .phase-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px 3px 7px; border-radius: 999px;
+      font-size: 12px; font-weight: 600;
+      background: var(--pb); color: var(--pt);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .phase-pill .pd { width: 6px; height: 6px; border-radius: 50%; background: var(--pdot); flex-shrink: 0; }
+    .tl-date-label { font-size: 12px; color: var(--faint); font-weight: 500; }
+
+    .tl-cards { display: flex; flex-direction: column; gap: 8px; }
+    .tl-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 16px 20px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+    .tl-card h3 { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
+
+    .tl-meta { display: flex; flex-direction: column; gap: 4px; }
+    .tl-row  { display: flex; gap: 8px; font-size: 13px; line-height: 1.5; }
+    .tl-lbl  {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--faint);
+      min-width: 60px; padding-top: 1px; flex-shrink: 0;
+    }
+    .tl-val { color: var(--muted); }
+
+    .kpi-row {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .kpi-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 999px; padding: 3px 10px;
+      font-size: 12px; color: var(--muted);
+    }
+    .kpi-chip .cl {
+      font-size: 9px; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--faint); margin-right: 2px;
+    }
+
+    /* Launch card accent */
+    .tl-card.is-launch {
+      border-color: #fca5a5; background: #fff8f8;
+    }
+    .tl-card.is-launch h3 { color: #991b1b; }
+
+    /* ════════════════ LOOP ════════════════ */
+    .loop-list {
+      margin-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+    .loop-item {
+      display: grid;
+      grid-template-columns: 36px 1fr 190px;
+      gap: 14px; align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .loop-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--surface); border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--muted); flex-shrink: 0;
+    }
+    .loop-item.is-return .loop-num {
+      background: #fff1ee; border-color: var(--accent); color: var(--accent);
+    }
+    .loop-item.is-return {
+      background: #fffaf8;
+      margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+      border-radius: var(--r);
+      border-color: #fdd5c5;
+    }
+    .loop-title { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 2px; }
+    .loop-desc  { font-size: 13px; color: var(--muted); margin: 0; }
+    .loop-return-tag {
+      margin-top: 8px; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--accent);
+    }
+    .loop-metric b    { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+    .loop-metric span { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .rate-target {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      letter-spacing: .06em; padding: 1px 7px; margin-bottom: 6px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .loop-metric-sep {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ════════════════ THREE PILLARS ════════════════ */
+    .pillars-head {
+      font-size: 11px; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--faint); margin-bottom: 28px;
+    }
+    .pillars-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 650; letter-spacing: -.03em; line-height: 1.1;
+      color: var(--ink); margin: 0 0 32px;
+      text-transform: uppercase;
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+      border: 2px solid var(--ink); margin-bottom: 2px;
+    }
+    .pillar-block {
+      padding: 28px 26px; border-right: 1px solid var(--ink);
+    }
+    .pillar-block:last-child { border-right: none; }
+    .pillar-label {
+      font-size: 10px; font-weight: 800; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      display: block; margin-bottom: 14px;
+    }
+    .pillar-block p {
+      font-size: 14px; color: var(--ink); line-height: 1.65;
+      margin: 0; font-weight: 400;
+    }
+    .what-they-did {
+      border: 2px solid var(--ink); border-top: none;
+      background: var(--ink); padding: 32px 32px 28px;
+    }
+    .wtd-title {
+      font-size: 10px; font-weight: 800; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      display: block; margin-bottom: 18px;
+    }
+    .wtd-lines {
+      margin: 0 0 18px; padding: 0; list-style: none;
+    }
+    .wtd-lines li {
+      font-family: var(--serif);
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 500; font-style: italic;
+      color: #ffffff; line-height: 1.55;
+      padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .wtd-lines li:last-child { border-bottom: none; }
+    .wtd-footer {
+      font-size: 13px; color: rgba(255,255,255,.55);
+      font-style: italic; padding-top: 4px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 56px; padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--faint);
+    }
+
+    /* ════════════════ POSITIONING BRIEF — classic brand doc ════════════════ */
+    .pos-brief { margin-top: 24px; border: 2px solid var(--ink); }
+    .pos-brief-head { padding: 28px 32px 26px; border-bottom: 1px solid var(--ink); }
+    .pos-kicker {
+      font-size: 10px; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 16px;
+    }
+    .pos-statement {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.4vw, 24px);
+      line-height: 1.3; letter-spacing: -.03em;
+      font-weight: 500; font-style: italic;
+      color: var(--ink); margin: 0 0 16px;
+      padding-left: 20px; border-left: 3px solid var(--ink);
+    }
+    .pos-draft {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 8px; background: #fef9ec;
+      color: #7c3d00; border: 1px solid #fde68a;
+    }
+    .pos-brief-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .pos-cell {
+      padding: 22px 32px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .pos-cell:nth-child(even) { border-right: none; }
+    .pos-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .pos-cell-label {
+      font-size: 10px; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--ink);
+      display: block; margin-bottom: 10px;
+    }
+    .pos-cell p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.65; }
+    .pos-cell p strong { color: var(--ink); font-weight: 600; }
+
+    /* ════════════════ MOBILE ════════════════ */
+    @media (max-width: 720px) {
+      main { padding: 28px 16px 64px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; }
+      .idea-grid { grid-template-columns: 1fr; gap: 24px; }
+      .topic-slate { grid-template-columns: 1fr; }
+      .tl-track { padding-left: 26px; }
+      .tl-track::before { left: 6px; }
+      .tl-node { left: -20px; width: 14px; height: 14px; }
+      .loop-item { grid-template-columns: 36px 1fr; }
+      .loop-metric { display: none; }
+      .loop-item.is-return { margin: 0 -4px; padding-left: 8px; padding-right: 8px; }
+      .pos-brief-grid { grid-template-columns: 1fr; }
+      .pos-cell { border-right: none; border-bottom: 1px solid var(--ink); }
+      .pos-cell:last-child { border-bottom: none; }
+      .pos-brief-head, .pos-cell { padding: 16px 18px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar-block { border-right: none; border-bottom: 1px solid var(--ink); }
+      .pillar-block:last-child { border-bottom: none; }
+      .what-they-did { padding: 22px 18px 20px; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 32px; }
+      .pull { font-size: 21px; }
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body><main>
-  <section class="hero"><div><div class="brand">HTC VIVE Roundtable AI</div><h1>Don’t ask one AI. Ask the whole roundtable.</h1><p class="dek">A rollout map for proving whether Generative Debate can become a product people understand, share, and return to.</p></div><aside><div class="glyph"><span class="seat s1"></span><span class="seat s2"></span><span class="seat s3"></span><span class="seat s4"></span><span class="seat s5"></span></div><div class="topic-list"><span style="--dot:var(--health)">Health first</span><span style="--dot:var(--food)">Food</span><span style="--dot:var(--tech)">Tech</span><span style="--dot:var(--sport)">Sport</span><span style="--dot:var(--finance)">Finance</span></div></aside></section>
-  <section class="idea"><div><p class="kicker">The idea</p><div class="pull">One question becomes a multi-agent debate.</div></div><div class="body-copy"><p>People do not just need one fast answer. For important questions, they need a multi-level response: different expert agents with specific perspectives looking at the same question.</p><p>One agent may focus on risk. Another on daily habits. Another on emotional context. Another on practical next steps. When those perspectives debate each other, the answer becomes more robust, more entertaining, and easier to trust than a single chatbot reply.</p></div></section>
-  <section><p class="kicker">Topic slate</p><h2>Health leads. The others compete for second.</h2><div class="topic-slate"><div class="health-card"><h3>Health is the strongest first topic.</h3><p class="muted">TVBS / 健康2.0 is a real partner channel, and health questions naturally need multiple expert perspectives: family care, nutrition, sleep, rehab, and medical caution.</p></div><div class="topic-grid"><div class="topic"><b style="color:var(--food)">Food</b><p>Cuisine taste debates, restaurant choice, nutrition angles.</p></div><div class="topic"><b style="color:var(--tech)">Tech</b><p>Tool comparisons, build decisions, operator debates.</p></div><div class="topic"><b style="color:var(--sport)">Sport</b><p>Tennis expert, coach, injury doctor, stats analyst.</p></div><div class="topic"><b style="color:var(--finance)">Finance</b><p>Saving, spending, investing education. Not financial advice.</p></div></div></div></section>
-  <section><p class="kicker">Rollout timeline</p><h2>The launch plan now runs from validation to retention.</h2><div class="timeline"><div class="row"><div class="date">Pre-Launch
-5/25 — 6/3</div><div class="event"><h3>Core Engine & UX Validation</h3><p><b>Audience:</b> Closed group of tech-forward early adopters.</p><p><b>Channels:</b> Global technology: TBC · Global arts: TBC · Taiwan: TVBS 健康2.0.</p><p><b>Owners:</b> Technology: Travis · Arts: TBC · Taiwan: TVBS 健康2.0, Chris, 竹林.</p><p class="assets"><span>Primary KPI</span> &lt; 5s agent response latency.</p></div></div><div class="row"><div class="date">Pre-Launch
-5/25 — 6/3</div><div class="event"><h3>Collateral & Copywriting Setup</h3><p><b>Audience:</b> Broad developer and tech community.</p><p><b>Channels:</b> Landing pages for Overall, Health, Tech, and Arts · Feature demo videos · TOC · Misc.</p><p><b>Owners:</b> Tim · Travis · Victoria / Scottie.</p><p class="assets"><span>Primary KPIs</span> Sign-off on value pillars · Demo video completed · PPNS.</p></div></div><div class="row"><div class="date">Waitlist Open
-6/4 — 6/5</div><div class="event"><h3>Interactive Landing Page Go-Live</h3><p><b>Audience:</b> Global pilot launch in TBC; Taiwan pilot launch in 健康2.0.</p><p><b>Channels:</b> Hacker News · Twitter / X · Tech newsletters.</p><p><b>Owner:</b> Growth / Web Ops.</p><p class="assets"><span>Primary KPI</span> Session completion rate (%).</p></div></div><div class="row"><div class="date">Launch Day
-9-Jun
-Day 0</div><div class="event"><h3>General Availability (GA)</h3><p><b>Audience:</b> Global tech ecosystem and engineering organizations.</p><p><b>Channels:</b> Product Hunt · Tech Press · BusinessWire.</p><p><b>Owners:</b> Global PR: Jeff · Taiwan PR: Doris?</p><p class="assets"><span>Primary KPI</span> Session completion rate (%).</p></div></div><div class="row"><div class="date">Post-Launch
-Weeks 1–4</div><div class="event"><h3>Activation & Viral Loop Scaling</h3><p><b>Audience:</b> Newly registered workspaces and teams.</p><p><b>Channels:</b> Automated in-app onboarding guides · Referral emails.</p><p><b>Owner:</b> Growth / Product.</p><p class="assets"><span>Primary KPIs</span> Activation Rate · Daily Active Users (DAU) · Avg session time per user.</p></div></div><div class="row"><div class="date">Retention
-Weeks 5–12</div><div class="event"><h3>Cohort Analysis & Optimization</h3><p><b>Audience:</b> Active teams and organizations.</p><p><b>Channels:</b> In-app feedback tools · Regular account reviews.</p><p><b>Owner:</b> Customer Success / Analytics.</p><p class="assets"><span>Primary KPIs</span> D30 retention rate (%) · New topics per day · Conversion rate from Free to Pro tier · Podcast setup?</p></div></div></div></section>
-  <section><p class="kicker">The loop</p><h2>The product “hits” only if people move through the whole loop.</h2><p class="muted">Understand, use, share, bring someone else in, and come back.</p><div class="loop"><div class="loop-row"><div class="ln">01</div><div class="lc"><h4>People see the hook</h4><p>“Don’t ask one AI. Ask the whole roundtable.”</p></div><div class="lm"><b>View → start</b><span>Percent of visitors who begin a Roundtable after hitting the page.</span></div></div><div class="loop-row"><div class="ln">02</div><div class="lc"><h4>They start a Roundtable</h4><p>Choose topic and expert setup.</p></div><div class="lm"><b>Start rate</b><span>Percent of visitors who configure and launch a session.</span></div></div><div class="loop-row"><div class="ln">03</div><div class="lc"><h4>They reach a useful result</h4><p>Expert debate, recap, next step.</p></div><div class="lm"><b>First useful Roundtable</b><span>Percent who reach a recap or next step. Time in session is tracked here.</span></div></div><div class="loop-row"><div class="ln">04</div><div class="lc"><h4>They share it</h4><p>Same topic and expert setup, in one link.</p></div><div class="lm"><b>Share rate</b><span>Percent of activated users who share a link or recap.</span></div></div><div class="loop-row"><div class="ln">05</div><div class="lc"><h4>Someone opens and starts</h4><p>A new session begins from the shared link.</p></div><div class="lm"><b>Shared-link conversion</b><span>Percent of receivers who start their own session.</span></div></div><div class="loop-row return"><div class="ln">06</div><div class="lc"><h4>They come back</h4><p>Repeat use without being pushed.</p><p class="repeat">↺ Returns to 01 — the loop closes here.</p></div><div class="lm"><b>Repeat use</b><span>Percent who return at seven and thirty days.</span></div></div></div></section>
+<body>
+<main>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div>
+      <div class="brand-pill"><span class="dot"></span>HTC VIVE Roundtable AI</div>
+      <h1>Don't ask one AI.<br>Ask the whole roundtable.</h1>
+      <p class="hero-dek">A rollout map for proving whether Generative Debate can become a product people understand, share, and return to.</p>
+    </div>
+    <aside>
+      <div class="glyph">
+        <span class="seat s1"></span>
+        <span class="seat s2"></span>
+        <span class="seat s3"></span>
+        <span class="seat s4"></span>
+        <span class="seat s5"></span>
+      </div>
+      <div class="topic-tags">
+        <div class="topic-tag"><span class="td" style="background:#0d9488"></span>Health first</div>
+        <div class="topic-tag"><span class="td" style="background:#c2790a"></span>Food</div>
+        <div class="topic-tag"><span class="td" style="background:#5b6776"></span>Tech</div>
+        <div class="topic-tag"><span class="td" style="background:#9f6147"></span>Sport</div>
+        <div class="topic-tag"><span class="td" style="background:#5e775a"></span>Finance</div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ══════════ POSITIONING BRIEF ══════════ -->
+  <section>
+    <span class="eyebrow">Brand Positioning</span>
+    <h2>What we're selling, to whom, and against what.</h2>
+
+    <div class="pos-brief">
+
+      <div class="pos-brief-head">
+        <span class="pos-kicker">One-sentence positioning</span>
+        <p class="pos-statement">"A room where different minds meet the same question — each from their own stance. The fun is in the friction."</p>
+        <span class="pos-draft">Source: Travis's exec brief</span>
+      </div>
+
+      <div class="pos-brief-grid">
+        <div class="pos-cell">
+          <span class="pos-cell-label">What it is</span>
+          <p>You come in with a topic. You leave with a new angle. The core isn't Q&A — it's the collision of stances. The user puts a topic out; the system seats 2–3 personas suited to it. Within three minutes, they handle it from their own angles — stake a position, respond, disagree. The user can interrupt, follow up, or pivot at any time.</p>
+        </div>
+        <div class="pos-cell">
+          <span class="pos-cell-label">The gap it fills</span>
+          <p>Not the news itself — the interpretation layer. "I know what happened, but I don't know what to make of it." The gap that reporting leaves behind, picked up by people at the table. Not information. Not answers. <strong>A new angle.</strong></p>
+        </div>
+        <div class="pos-cell">
+          <span class="pos-cell-label">What it isn't</span>
+          <p>Not an AI assistant — one voice, one answer. Not a podcast — pre-recorded, the same for every listener. Not AI companionship — flattery, not friction. <strong>Roundtable is not an assistant. Not a search engine. A room where different minds meet the same question.</strong></p>
+        </div>
+        <div class="pos-cell">
+          <span class="pos-cell-label">The experience</span>
+          <p>Three minutes per round. Voice-first — tone is part of the stance. Non-replayable, but the card travels: topic, personas, key stances — designed to leave the product. <strong>The user leaves with an angle they didn't have before.</strong></p>
+        </div>
+        <div class="pos-cell">
+          <span class="pos-cell-label">Lead ICP — the one we sell to</span>
+          <p>Health-content creators and knowledge workers who need interpretive depth, not just information. Open Beta leads with Health — body, mind, lifestyle — anchored by TVBS 健康2.0. Team size 2–10. Producers, editors, medical reviewers who need multiple expert angles on the same topic.</p>
+        </div>
+        <div class="pos-cell">
+          <span class="pos-cell-label">Core pain we solve</span>
+          <p>One AI voice converges on one answer. Users with complex topics — health, finance, career decisions — need perspectives that collide, not consensus. The gap isn't information. <strong>It's interpretation.</strong> Single-voice AI closes down a question. Roundtable opens it up.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ IDEA ══════════ -->
+  <section>
+    <span class="eyebrow">The idea</span>
+    <div class="idea-grid">
+      <div class="pull">One question becomes a multi-agent debate.</div>
+      <div class="body-copy">
+        <p>People do not just need one fast answer. For important questions, they need a multi-level response: different expert agents with specific perspectives looking at the same question.</p>
+        <p>One agent may focus on risk. Another on daily habits. Another on emotional context. Another on practical next steps. When those perspectives debate each other, the answer becomes more robust, more entertaining, and easier to trust than a single chatbot reply.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TOPIC SLATE ══════════ -->
+  <section>
+    <span class="eyebrow">Topic slate</span>
+    <h2>Health leads. The others compete for second.</h2>
+    <div class="topic-slate">
+      <div class="health-card">
+        <h3>Health is the strongest first topic.</h3>
+        <p>TVBS / 健康2.0 is a real partner channel, and health questions naturally need multiple expert perspectives: family care, nutrition, sleep, rehab, and medical caution.</p>
+      </div>
+      <div class="mini-grid">
+        <div class="topic-card">
+          <div class="tc-name" style="color:#c2790a">Food</div>
+          <p>Cuisine taste debates, restaurant choice, nutrition angles.</p>
+        </div>
+        <div class="topic-card">
+          <div class="tc-name" style="color:#5b6776">Tech</div>
+          <p>Tool comparisons, build decisions, operator debates.</p>
+        </div>
+        <div class="topic-card">
+          <div class="tc-name" style="color:#9f6147">Sport</div>
+          <p>Tennis expert, coach, injury doctor, stats analyst.</p>
+        </div>
+        <div class="topic-card">
+          <div class="tc-name" style="color:#5e775a">Finance</div>
+          <p>Saving, spending, investing education. Not financial advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TIMELINE ══════════ -->
+  <section>
+    <span class="eyebrow">Rollout timeline</span>
+    <h2>The launch plan now runs from validation to retention.</h2>
+
+    <div class="tl-track">
+
+      <!-- ── Pre-Launch ── -->
+      <div class="tl-group">
+        <div class="tl-phase-hd">
+          <div class="tl-node" style="--nc:var(--pre-dot)"></div>
+          <div class="phase-pill" style="--pb:var(--pre-bg);--pt:var(--pre-text);--pdot:var(--pre-dot)">
+            <span class="pd"></span>Pre-Launch
+          </div>
+          <span class="tl-date-label">5/25 — 6/3</span>
+        </div>
+        <div class="tl-cards">
+
+          <div class="tl-card">
+            <h3>Product &amp; Asset Readiness</h3>
+            <div class="tl-meta">
+              <div class="tl-row"><span class="tl-lbl">Audience</span><span class="tl-val">Closed cohort — tech-forward early adopters + TVBS 健康2.0 team.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Product</span><span class="tl-val">Session latency &lt;5s · Demo video completed · Landing pages live (Health + overall) · FAQ and terms ready.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Social</span><span class="tl-val">Tim + Travis teaser posts — "something is coming" framing. No product reveal yet. Build anticipation without over-promising.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Paid</span><span class="tl-val">Nothing. No budget before the product is ready to convert. Every dollar spent now is wasted.</span></div>
+              <div class="tl-row"><span class="tl-lbl">PR</span><span class="tl-val">Jeff briefed on global embargo plan. Doris briefed on TVBS timing. Talking points drafted. Nothing sent to press yet.</span></div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-chip"><span class="cl">KPI</span> Latency &lt;5s</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Demo video done</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Landing pages live</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Waitlist Open ── -->
+      <div class="tl-group">
+        <div class="tl-phase-hd">
+          <div class="tl-node" style="--nc:var(--wl-dot)"></div>
+          <div class="phase-pill" style="--pb:var(--wl-bg);--pt:var(--wl-text);--pdot:var(--wl-dot)">
+            <span class="pd"></span>Waitlist Open
+          </div>
+          <span class="tl-date-label">6/4 — 6/5</span>
+        </div>
+        <div class="tl-cards">
+
+          <div class="tl-card">
+            <h3>Landing Page Go-Live + Waitlist</h3>
+            <div class="tl-meta">
+              <div class="tl-row"><span class="tl-lbl">Audience</span><span class="tl-val">Global open — anyone who finds the page. Taiwan health audience via TVBS 健康2.0 warm list.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Social</span><span class="tl-val">Waitlist announcement posts — Tim + Travis + brand accounts. Link to landing page. Show HN draft finalized and scheduled.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Paid</span><span class="tl-val">Optional: small retargeting test ($300–500) on Twitter/X if page traffic is meaningful. Only if organic reach underperforms.</span></div>
+              <div class="tl-row"><span class="tl-lbl">PR</span><span class="tl-val">Hold. No press outreach until launch day. Embargoed materials sent to Jeff + Doris, not released.</span></div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-chip"><span class="cl">KPI</span> Waitlist signups</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Page view → signup rate</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Launch Day ── -->
+      <div class="tl-group">
+        <div class="tl-phase-hd">
+          <div class="tl-node" style="--nc:var(--launch-dot)"></div>
+          <div class="phase-pill" style="--pb:var(--launch-bg);--pt:var(--launch-text);--pdot:var(--launch-dot)">
+            <span class="pd"></span>Launch Day
+          </div>
+          <span class="tl-date-label">15-Jun · Day 0</span>
+        </div>
+        <div class="tl-cards">
+
+          <div class="tl-card is-launch">
+            <h3>Open Beta — All Channels Fire</h3>
+            <div class="tl-meta">
+              <div class="tl-row"><span class="tl-lbl">Audience</span><span class="tl-val">Global open — HN readers, Twitter/X tech audience, Taiwan health audience via TVBS.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Social</span><span class="tl-val">Coordinated launch posts — Tim + Travis founder accounts. Founder thread (4–6 slides). Demo GIF. Hook: "Don't ask one AI. Ask the whole roundtable." Show HN post goes live 9am EST.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Paid</span><span class="tl-val">Optional launch boost: promoted post on Twitter/X ($500 max). Only activate if organic traction stalls by noon. Do not run ads into an unvalidated funnel.</span></div>
+              <div class="tl-row"><span class="tl-lbl">PR</span><span class="tl-val">Jeff → global tech press embargo lifts June 15, 9am EST. Doris → Taiwan press + TVBS coordinated drop. TVBS 健康2.0 partner content scheduled for June 17. BusinessWire release goes out same day.</span></div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-chip"><span class="cl">KPI</span> Day 0 signups</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Show HN rank + comments</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Session start rate</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Post-Launch ── -->
+      <div class="tl-group">
+        <div class="tl-phase-hd">
+          <div class="tl-node" style="--nc:var(--post-dot)"></div>
+          <div class="phase-pill" style="--pb:var(--post-bg);--pt:var(--post-text);--pdot:var(--post-dot)">
+            <span class="pd"></span>Post-Launch
+          </div>
+          <span class="tl-date-label">Weeks 1–4</span>
+        </div>
+        <div class="tl-cards">
+
+          <div class="tl-card">
+            <h3>Activation &amp; Distribution Test</h3>
+            <div class="tl-meta">
+              <div class="tl-row"><span class="tl-lbl">Audience</span><span class="tl-val">Newly signed-up users + Taiwan health audience via TVBS drop (Week 2).</span></div>
+              <div class="tl-row"><span class="tl-lbl">Social</span><span class="tl-val">TVBS 健康2.0 partner content drop Week 2. Session recap cards shared by early users — repost and amplify. Ask power users directly to share their session card.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Paid</span><span class="tl-val">Newsletter sponsorship test: TLDR or Ben's Bites ($2,000–5,000 for one placement). Track cost per signup and cost per activated user. Kill if CAC &gt;$80 with no activation improvement after one week.</span></div>
+              <div class="tl-row"><span class="tl-lbl">PR</span><span class="tl-val">Jeff follows up with journalists who received embargo kit. Tech newsletter editor outreach (TLDR, Ben's Bites). No new pitches until D30 retention data exists.</span></div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-chip"><span class="cl">KPI</span> Activation rate ≥30%</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Avg session time ≥6 min</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Share rate ≥15%</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Newsletter CAC</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Retention ── -->
+      <div class="tl-group">
+        <div class="tl-phase-hd">
+          <div class="tl-node" style="--nc:var(--ret-dot)"></div>
+          <div class="phase-pill" style="--pb:var(--ret-bg);--pt:var(--ret-text);--pdot:var(--ret-dot)">
+            <span class="pd"></span>Retention
+          </div>
+          <span class="tl-date-label">Weeks 5–12</span>
+        </div>
+        <div class="tl-cards">
+
+          <div class="tl-card">
+            <h3>Cohort Read &amp; Channel Scaling</h3>
+            <div class="tl-meta">
+              <div class="tl-row"><span class="tl-lbl">Audience</span><span class="tl-val">Existing users (retention focus) + new acquisition on channels that proved out in W1–4.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Social</span><span class="tl-val">Power user spotlights. Topic preview clips — show what a generative discussion looks like before someone starts one. Session recap card examples as organic content.</span></div>
+              <div class="tl-row"><span class="tl-lbl">Paid</span><span class="tl-val">Scale whatever won in W1–4. If newsletter worked, book a second placement. Test LinkedIn for B2B pilot prospects ($1,000–2,000/month, narrow targeting). Stop anything with CAC &gt;$100 and &lt;20% activation.</span></div>
+              <div class="tl-row"><span class="tl-lbl">PR</span><span class="tl-val">TVBS joint case study (publish W8–10). Pitch Full GA story to tech press with real retention numbers. Product Hunt prep — hunter confirmed, 30-person launch group assembled, assets ready.</span></div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-chip"><span class="cl">KPI</span> D7 unaided return ≥18%</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> D30 unaided return ≥12%</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> Free → Pro ≥3%</div>
+              <div class="kpi-chip"><span class="cl">KPI</span> 5+ power users</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /tl-track -->
+  </section>
+
+  <!-- ══════════ LOOP ══════════ -->
+  <section>
+    <span class="eyebrow">The loop</span>
+    <h2>The product "hits" only if people move through the whole loop.</h2>
+    <p style="margin-top:4px">Understand, use, share, bring someone else in, and come back.</p>
+
+    <div class="loop-list">
+
+      <div class="loop-item">
+        <div class="loop-num">01</div>
+        <div>
+          <div class="loop-title">People see the hook</div>
+          <div class="loop-desc">"Don't ask one AI. Ask the whole roundtable."</div>
+        </div>
+        <div class="loop-metric">
+          <div class="rate-target">Target ≥ 10%</div>
+          <b>View → start</b>
+          <span>Percent of visitors who hit the page and begin setting up a session.</span>
+        </div>
+      </div>
+
+      <div class="loop-item">
+        <div class="loop-num">02</div>
+        <div>
+          <div class="loop-title">They start a Roundtable</div>
+          <div class="loop-desc">Choose a topic. The system seats the right voices for it.</div>
+        </div>
+        <div class="loop-metric">
+          <div class="rate-target">Target ≥ 60%</div>
+          <b>Start rate</b>
+          <span>Percent of those who begin setup and actually launch the session.</span>
+        </div>
+      </div>
+
+      <div class="loop-item">
+        <div class="loop-num">03</div>
+        <div>
+          <div class="loop-title">They reach a useful result</div>
+          <div class="loop-desc">Three minutes per round. Distinct views, real disagreement, a recap card at the end.</div>
+        </div>
+        <div class="loop-metric">
+          <div class="rate-target">Target ≥ 30%</div>
+          <b>First useful Roundtable</b>
+          <span>Percent who complete at least one full round and receive a recap card.</span>
+          <div class="loop-metric-sep">
+            <div class="rate-target">Target ≥ 6 min</div>
+            <b>Average session time</b>
+            <span>Under 3 min means the user left before the first round ended.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="loop-item">
+        <div class="loop-num">04</div>
+        <div>
+          <div class="loop-title">They share it</div>
+          <div class="loop-desc">The recap card leaves the product — topic, personas, key stances. One link.</div>
+        </div>
+        <div class="loop-metric">
+          <div class="rate-target">Target ≥ 15%</div>
+          <b>Share rate</b>
+          <span>Percent of activated users who take the recap card out of the product.</span>
+        </div>
+      </div>
+
+      <div class="loop-item">
+        <div class="loop-num">05</div>
+        <div>
+          <div class="loop-title">Someone opens and starts</div>
+          <div class="loop-desc">Someone opens the card and starts their own session.</div>
+        </div>
+        <div class="loop-metric">
+          <div class="rate-target">Target ≥ 25%</div>
+          <b>Shared-link conversion</b>
+          <span>Percent of people who open a shared card and launch their own session.</span>
+        </div>
+      </div>
+
+      <div class="loop-item is-return">
+        <div class="loop-num">06</div>
+        <div>
+          <div class="loop-title">They come back</div>
+          <div class="loop-desc">Returns without any push from us.</div>
+          <div class="loop-return-tag">↺ Returns to 01 — the loop closes here.</div>
+        </div>
+        <div class="loop-metric">
+          <div class="rate-target">D7 ≥ 18% · D30 ≥ 12%</div>
+          <b>Repeat use</b>
+          <span>Percent who return on day 7 and day 30 with no outbound from the team in the prior 24h.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ THREE PILLARS ══════════ -->
+  <section>
+    <div class="pillars-head">GTM Asset — Brand Brief</div>
+    <div class="pillars-title">Roundtable AI's<br>Three Pillars</div>
+
+    <div class="pillars-grid">
+      <div class="pillar-block">
+        <span class="pillar-label">Story</span>
+        <p>AI is no longer a search box. It is a room you can enter. The whole worldview is built around one idea: conversations are more powerful when multiple minds collide.</p>
+      </div>
+      <div class="pillar-block">
+        <span class="pillar-label">Signal</span>
+        <p>The roundtable is the symbol. Not a chatbot window. Not a feed. A table with empty chairs, expert voices, and a place for you to interrupt.</p>
+      </div>
+      <div class="pillar-block">
+        <span class="pillar-label">System</span>
+        <p>Every topic becomes a living discussion. Health, fashion, food, finance, art — each one can be previewed like a show. The product sells the feeling of joining a conversation before it explains the technology.</p>
+      </div>
+    </div>
+
+    <div class="what-they-did">
+      <span class="wtd-title">What they really did.</span>
+      <ul class="wtd-lines">
+        <li>They built a room before they built a tool.</li>
+        <li>They built voices before they built answers.</li>
+        <li>They built participation before they built search.</li>
+      </ul>
+      <div class="wtd-footer">└ The AI was the last thing to arrive.</div>
+    </div>
+  </section>
+
   <div class="footer">Roundtable AI rollout timeline · Claude-guided editorial revision</div>
-</main></body></html>
+
+</main>
+</body>
+</html>
